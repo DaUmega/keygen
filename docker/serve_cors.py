@@ -3,7 +3,7 @@
 Thin wrapper around bin/serve.py that adds an Access-Control-Allow-Origin
 header to every response.
 
-The web frontend (port 8000) and the API (port 8080) are different origins
+The web frontend (port 8080) and the API (port 3000) are different origins
 from the browser's point of view, so without this header the frontend's
 XMLHttpRequest/$.getJSON calls in web/js/keygen.js get blocked by CORS.
 

@@ -3,8 +3,8 @@
 # keygen — single-container image (no docker-compose)
 #
 # Runs two processes under supervisord inside ONE container:
-#   keygen-api  -> docker/serve_cors.py    (CORS-enabled wrapper around bin/serve.py, port 8080)
-#   keygen-web  -> `python3 -m http.server` serving the static web/ frontend (container port 8000)
+#   keygen-api  -> docker/serve_cors.py    (CORS-enabled wrapper around bin/serve.py, port 3000)
+#   keygen-web  -> `python3 -m http.server` serving the static web/ frontend (container port 8080)
 #
 # web/js/settings.js is required by the frontend but is .gitignored upstream.
 # docker/entrypoint.sh generates it at container start from
@@ -20,8 +20,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PYTHONUNBUFFERED=1 \
-    WEB_PORT=8000 \
-    KEYGEN_ENDPOINT=http://localhost:8080 \
+    WEB_PORT=8080 \
+    KEYGEN_ENDPOINT=http://localhost:3000 \
     CORS_ALLOW_ORIGIN=*
 
 # ---------------------------------------------------------------------------
@@ -75,7 +75,7 @@ COPY docker/supervisord.conf /etc/supervisor/supervisord.conf
 # directive.
 ENV HOME=/home/keygen
 
-EXPOSE 8000 8080
+EXPOSE 3000 8080
 
 ENTRYPOINT ["/app/docker/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]

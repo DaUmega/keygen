@@ -6,8 +6,8 @@ IMAGE_NAME="${IMAGE_NAME:-keygen:latest}"
 CONTAINER_NAME="${CONTAINER_NAME:-keygen}"
 
 # Host ports the two in-container services are published on.
-WEB_HOST_PORT="${WEB_HOST_PORT:-8000}"
-API_HOST_PORT="${API_HOST_PORT:-8080}"
+WEB_HOST_PORT="${WEB_HOST_PORT:-8080}"
+API_HOST_PORT="${API_HOST_PORT:-3000}"
 
 # URL the *browser* will use to reach the API — baked into web/js/settings.js
 # at container start. Override if running on a remote host or behind a proxy
@@ -66,8 +66,8 @@ cmd_start() {
   fi
   docker run -d \
     --name "$CONTAINER_NAME" \
-    -p "${WEB_HOST_PORT}:8000" \
-    -p "${API_HOST_PORT}:8080" \
+    -p "${WEB_HOST_PORT}:8080" \
+    -p "${API_HOST_PORT}:3000" \
     -e "KEYGEN_ENDPOINT=${KEYGEN_ENDPOINT}" \
     -e "CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN}" \
     --restart unless-stopped \
