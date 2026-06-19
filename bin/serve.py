@@ -9,7 +9,7 @@ import os
 import shutil
 import re
 
-PORT_NUMBER = 8080
+PORT_NUMBER = 3000
 MAX_STR_LEN = 100
 
 class MyHandler(BaseHTTPRequestHandler):

@@ -75,7 +75,7 @@ COPY docker/supervisord.conf /etc/supervisor/supervisord.conf
 # directive.
 ENV HOME=/home/keygen
 
-EXPOSE 3000 8080
+EXPOSE 8080 3000
 
 ENTRYPOINT ["/app/docker/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]

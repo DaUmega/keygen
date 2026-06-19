@@ -10,7 +10,8 @@ cd /app
 # run` if you publish the API on a different host/port than the default.
 # ---------------------------------------------------------------------------
 KEYGEN_ENDPOINT="${KEYGEN_ENDPOINT:-http://localhost:3000}"
-sed "s#http://localhost:3000#${KEYGEN_ENDPOINT}#" web/js/settings.js.example > web/js/settings.js
+escaped_endpoint=$(printf '%s' "$KEYGEN_ENDPOINT" | sed 's/[&/#]/\\&/g')
+sed "s#http://localhost:8080#${escaped_endpoint}#" web/js/settings.js.example > web/js/settings.js
 echo "[entrypoint] generated web/js/settings.js -> keygen_endpoint = \"${KEYGEN_ENDPOINT}\""
 
 # ---------------------------------------------------------------------------
